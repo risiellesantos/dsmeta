@@ -35,7 +35,7 @@ public class SmsService {
 		String date = sales.getDate().getMonthValue() + "/" + sales.getDate().getYear();
 				 
 		
-		String msg = "O vendedor" + sales.getSellerName() + " foi destaque em " + date
+		String msg = "O vendedor " + sales.getSellerName() + " foi destaque em " + date
 				+ " com um total de R$" + String.format("%.2f", sales.getAmount()); //%.2f é a forma de formatar um numero com 2 casas
 
 		Twilio.init(twilioSid, twilioKey);
