@@ -19,12 +19,17 @@ function SalesCard() {
     const [sales, setSales] = useState<Sales[]>([])//agora quando buscar do backend as vendas, elas vão ficar nessa lista
 
     useEffect(() => {
-        axios.get(`${BASE_URL}/sales`)
-            .then(response => {
-                setSales(response.data.content)
 
+        const dmin = minDate.toISOString().slice(0, 10) //a função slice corta oq está imprimindo a partir da posicão x a y
+        const dmax = maxDate.toISOString().slice(0, 10)
+        console.log(dmin)
+
+        axios.get(`${BASE_URL}/sales?minDate=${dmin}&maxDate=${dmax}`)
+            .then(response => {
+                setSales(response.data.content);
             })
-    }, [])
+    }, [minDate, maxDate]);
+    //configurando o useeffect a sempre mudar quando a aplicação rodar
 
     return (
         <div className="dsmeta-card">
@@ -80,7 +85,7 @@ function SalesCard() {
                             )
                         })
 
-                        }//transformou os dados estaticos para dinamicos
+                        }
 
                     </tbody>
 
